@@ -1,0 +1,61 @@
+{
+  "name": "vue3-ssr",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build:client": "vue-cli-service build --dest dist/client",
+    "build:server": "cross-env SSR=true vue-cli-service build --dest dist/server",
+    "build": "npm run build:client && npm run build:server",
+    "lint": "vue-cli-service lint",
+    "serve": "vue-cli-service serve",
+    "pressr": "npm run build",
+    "ssr": "node server.js",
+    "ssr:dev": "node server.js"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "root": true
+  },
+  "dependencies": {
+    "@vue/server-renderer": "^3.0.2",
+    "axios": "^0.21.0",
+    "core-js": "^3.7.0",
+    "express": "^4.17.1",
+    "serialize-javascript": "^5.0.1",
+    "vue": "^3.0.2",
+    "vue-router": "^4.0.0-rc.2",
+    "vuex": "^4.0.0-rc.1",
+    "webpack": "^4.44.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.3",
+    "@vue/cli-plugin-babel": "^4.5.8",
+    "@vue/cli-plugin-eslint": "^4.5.8",
+    "@vue/cli-service": "^4.5.8",
+    "@vue/compiler-sfc": "^3.0.2",
+    "autoprefixer": "^9.8.6",
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.13.0",
+    "eslint-plugin-vue": "^7.1.0",
+    "postcss": "^7.0.35",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
+    "webpack-manifest-plugin": "^2.2.0",
+    "webpack-node-externals": "^2.5.2"
+  }
+}
