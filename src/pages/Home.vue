@@ -5,7 +5,6 @@
         {{ u.title }}
       </li>
     </ul>
-    <p v-else>No user</p>
   </layout-default>
 </template>
 
@@ -21,14 +20,12 @@ export default defineComponent({
     LayoutDefault
   },
   setup() {
-    console.log('Home.vue -> setup()')
     const store = useStore();
+    // store.commit('setmetaHome');
 
     const posts = computed(() => store.state.post.posts);
 
     const fetchData = async () => {
-
-      console.log('Home.vue -> fetchData()')
 
       const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
 
@@ -44,6 +41,14 @@ export default defineComponent({
       posts,
       fetchData
     };
+  },
+  created() {
+    this.fetchMeta();
+  },
+  methods:{
+    fetchMeta() {
+      this.$store.dispatch("setmetaHome");
+    },
   },
   async serverPrefetch() {
     console.log('Home.vue -> serverPrefetch()')

@@ -2,7 +2,6 @@ import { createSSRApp, createApp, h } from 'vue'
 import isSSR from '@/_base/isSSR'
 import App from './App.vue'
 import createRouter from './router';
-import * as nativeStore from './store/useNativeStore';
 import * as vuexStore from './store/useVuexStore';
 
 import './assets/css/index.css'
@@ -12,7 +11,6 @@ export default function (args) {
     render: () => h(App),
     components: { App },
     setup() {
-      nativeStore.provideStore(args.nativeStore)
       vuexStore.provideStore(args.vuexStore)
     }
   }

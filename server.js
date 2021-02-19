@@ -1,4 +1,5 @@
 const path = require("path");
+const { parse } = require('node-html-parser');
 const express = require("express");
 const fs = require('fs');
 const serialize = require('serialize-javascript');
@@ -50,9 +51,19 @@ server.get("*", async (req, res) => {
       throw err
     }
 
-    appContent = `<div id="app">${appContent}${renderState(vuexStore.state, '__INITIAL_STATE__')}</div>`
+    const root = parse(html);
+    const head = root.querySelector('head')
+    head.removeChild(head.querySelector('title'))
+    head.appendChild(`<title>${vuexStore.state.titlepage}</title>`)
+    head.appendChild(`
+    <meta name='description' lang="th" content='${vuexStore.state.desc}' />
+    <meta itemprop="name" content="${vuexStore.state.content}"/>`
+    )
 
-    html = html.toString().replace('<div id="app"></div>', `${appContent}`)
+    appContent = `<div id="app">${appContent}${renderState(vuexStore.state, '__INITIAL_STATE__')}</div>`
+    // appContent = `<div id="app">${appContent}</div>`
+
+    html = root.toString().replace('<div id="app"></div>', `${appContent}`)
     res.setHeader('Content-Type', 'text/html')
     res.send(html)
   })

@@ -28,6 +28,8 @@ export default defineComponent({
 
     const store = useStore();
 
+    // store.commit('setmetaProfile');
+
     const user = computed(() => store.state.user.user);
 
     const fetchData = async () => {
@@ -44,6 +46,14 @@ export default defineComponent({
         user,
         fetchData
     };
+  },
+  created() {
+    this.fetchMeta();
+  },
+  methods:{
+    fetchMeta() {
+      this.$store.dispatch("setmetaProfile");
+    },
   },
   async serverPrefetch() {
     await this.fetchData();

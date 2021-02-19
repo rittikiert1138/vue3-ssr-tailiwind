@@ -5,7 +5,7 @@
          <router-link :to="{ name: 'userdetail', params: { id: u.id} }">{{ u.name }}</router-link>
       </li>
     </ul>
-    <p v-else>No user</p>
+    <p v-else>Loading...</p>
   </main-layout>
 </template>
 
@@ -21,14 +21,13 @@ export default defineComponent({
     'main-layout' :LayoutDefault
   },
   setup() {
-    console.log('User.vue -> setup()')
     const store = useStore();
+
+    // store.commit('setmetaUser');
 
     const users = computed(() => store.state.user.users);
 
     const fetchData = async () => {
-
-      console.log('User.vue -> fetchData()')
 
       const res = await axios.get('https://jsonplaceholder.typicode.com/users');
 
@@ -44,6 +43,14 @@ export default defineComponent({
       users,
       fetchData
     };
+  },
+  created() {
+    this.fetchMeta();
+  },
+  methods:{
+    fetchMeta() {
+      this.$store.dispatch("setmetaUser");
+    },
   },
   async serverPrefetch() {
     console.log('User.vue -> serverPrefetch()')

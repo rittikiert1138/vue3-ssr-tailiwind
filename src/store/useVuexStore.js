@@ -11,35 +11,42 @@ export function _createStore() {
     modules: {
       post,
       user
+    },
+    state() {
+      return {
+          titlepage: '',
+          desc: '',
+          content: ''
+      }
+    },
+    actions: {
+      setmetaHome({ commit }) {
+        commit("setmetaHome")
+      },
+      setmetaUser({ commit }) {
+        commit("setmetaUser")
+      },
+      setmetaProfile({ commit }) {
+        commit("setmetaProfile")
+      },
+    },
+    mutations: {
+      setmetaHome(state) {
+        state.titlepage = 'Postpage Title',
+        state.desc = 'เตรียมความพร้อมกู้ซื้อบ้าน ผ่านฉลุย กู้ซื้อบ้าน อนุมัติไว ทำได้ เพียงเตรียมความพร้อมทุกขั้นตอนการกู้ Home',
+        state.content = 'รวมเรื่องน่ารู้การกู้ซื้อบ้าน ตอบทุกข้อสงสัยเคลียร์ทุกขั้นตอนของการซื้อบ้าน Home'
+      },
+      setmetaUser(state) {
+        state.titlepage = 'Userpage Title',
+        state.desc = 'เตรียมความพร้อมกู้ซื้อบ้าน ผ่านฉลุย กู้ซื้อบ้าน อนุมัติไว ทำได้ เพียงเตรียมความพร้อมทุกขั้นตอนการกู้ User',
+        state.content = 'รวมเรื่องน่ารู้การกู้ซื้อบ้าน ตอบทุกข้อสงสัยเคลียร์ทุกขั้นตอนของการซื้อบ้าน User'
+      },
+      setmetaProfile(state) {
+        state.titlepage = 'setProfile Title',
+        state.desc = 'เตรียมความพร้อมกู้ซื้อบ้าน ผ่านฉลุย กู้ซื้อบ้าน อนุมัติไว ทำได้ เพียงเตรียมความพร้อมทุกขั้นตอนการกู้ setProfile',
+        state.content = 'รวมเรื่องน่ารู้การกู้ซื้อบ้าน ตอบทุกข้อสงสัยเคลียร์ทุกขั้นตอนของการซื้อบ้าน setProfile'
+      },
     }
-    // state() {
-    //   return {
-    //     users: [],
-    //     posts: []
-    //   };
-    // },
-    // actions: {
-    //   async fetchPosts({ commit }){
-    //       const res = await axios.get("https://jsonplaceholder.typicode.com/posts")
-
-    //       // console.log(res.data)
-
-    //       await commit("setPosts", res.data)
-    //   }
-    // },
-    // mutations: {
-      // setUsers(state, users) {
-      //   users.forEach((u) => {
-      //     state.users.push(u)
-      //   })
-      // },
-      // setPosts(state, posts) {
-      //   console.log(posts)
-      //   posts != undefined && posts.forEach((u) => {
-      //     state.posts.push(u)
-      //   })
-      // }
-    // }
   });
 }
 

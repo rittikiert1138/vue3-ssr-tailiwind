@@ -3,7 +3,7 @@
 export const post = {
     state () {
         return {
-            posts: []
+            posts: [],
         }
     },
     mutations: {
