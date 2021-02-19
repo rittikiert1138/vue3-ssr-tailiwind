@@ -34,6 +34,15 @@ const routes = [
       reload: true,
     },
   },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: () => import('../pages/Contact'),
+    props: true,
+    meta: {
+      reload: true,
+    },
+  },
 ];
 
 export default function () {
