@@ -23,7 +23,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
 
-    // store.commit('setmetaUser');
+    store.commit('setmetaUser');
 
     const users = computed(() => store.state.user.users);
 
@@ -43,14 +43,6 @@ export default defineComponent({
       users,
       fetchData
     };
-  },
-  created() {
-    this.fetchMeta();
-  },
-  methods:{
-    fetchMeta() {
-      this.$store.dispatch("setmetaUser");
-    },
   },
   async serverPrefetch() {
     console.log('User.vue -> serverPrefetch()')

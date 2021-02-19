@@ -21,7 +21,7 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-    // store.commit('setmetaHome');
+    store.commit('setmetaHome');
 
     const posts = computed(() => store.state.post.posts);
 
@@ -41,14 +41,6 @@ export default defineComponent({
       posts,
       fetchData
     };
-  },
-  created() {
-    this.fetchMeta();
-  },
-  methods:{
-    fetchMeta() {
-      this.$store.dispatch("setmetaHome");
-    },
   },
   async serverPrefetch() {
     console.log('Home.vue -> serverPrefetch()')

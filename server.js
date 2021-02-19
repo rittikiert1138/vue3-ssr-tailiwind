@@ -53,12 +53,14 @@ server.get("*", async (req, res) => {
 
     const root = parse(html);
     const head = root.querySelector('head')
+    const titletag = root.querySelector('title')
+    titletag.insertAdjacentHTML('afterend',` 
+      <meta name='description' lang="th" content='${vuexStore.state.desc}' />
+      <meta itemprop="name" content="${vuexStore.state.content}"/>
+    `)
     head.removeChild(head.querySelector('title'))
-    head.appendChild(`<title>${vuexStore.state.titlepage}</title>`)
-    head.appendChild(`
-    <meta name='description' lang="th" content='${vuexStore.state.desc}' />
-    <meta itemprop="name" content="${vuexStore.state.content}"/>`
-    )
+    const icons = root.querySelector('link[rel="icon"]')
+    icons.insertAdjacentHTML('afterend',`<title>${vuexStore.state.titlepage}</title>`)
 
     appContent = `<div id="app">${appContent}${renderState(vuexStore.state, '__INITIAL_STATE__')}</div>`
     // appContent = `<div id="app">${appContent}</div>`
