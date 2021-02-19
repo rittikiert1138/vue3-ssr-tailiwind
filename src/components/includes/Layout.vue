@@ -2,9 +2,8 @@
     <div class="LayoutDefault">
         <nav class="LayoutDefault__nav">
             <router-link to="/">Home</router-link> |
-            <router-link to="/user">User</router-link>
-            <!-- <a href="/">Home</a>
-            <a href="/user">User</a> -->
+            <router-link to="/user">User</router-link> | 
+            <router-link to="/contact">Contact</router-link>
         </nav>
         <main class="LayoutDefault__main">
             <slot/>
@@ -16,6 +15,7 @@
 </template>
 
 <script>
+
 export default {
   name: `LayoutDefault`,
 };
